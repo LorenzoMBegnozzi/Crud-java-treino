@@ -1,11 +1,10 @@
 package com.logan.example.entity;
 
 import com.logan.example.enums.Status;
-import jakarta.annotation.Generated;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table
+@Table(name = "user_table")
 @Entity
 @Getter
 @Setter
@@ -34,5 +33,5 @@ public class User {
     private String email;
 
     @Enumerated(EnumType.ORDINAL)
-    private Status status;
+    private Status status = Status.INATIVE;
 }

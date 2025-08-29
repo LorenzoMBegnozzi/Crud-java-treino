@@ -33,17 +33,21 @@ public class UserService {
     }
 
     public void put(final Long id, final UserDTO user) {
-         find(id);
+        find(id);
 
-         user.
+        final User userToUpdate = adapter.toEntity(user);
+        userToUpdate.setId(id);
+
+        repository.save(userToUpdate);
     }
 
-    public Page<UserDTO> delete(final Long id) {
-        return null;
+    public void delete(final Long id) {
+        find(id);
+        repository.deleteById(id);
     }
 
     private User find(final Long id) {
-        repository.findById(id)
+        return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
 
